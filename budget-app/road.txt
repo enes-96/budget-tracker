@@ -1,0 +1,2 @@
+user should click the incemoe section and put his income as a number
+user should click the plus icon to put a purchase
