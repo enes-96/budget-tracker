@@ -15,13 +15,15 @@
     <section
       class="font-bold grid grid-cols-2 grid-rows-2 m-4 gap-2 text-xl text-white"
     >
+      <!--balance section-->
+
       <div
         class="col-span-2 row-start-1 row-end-2 rounded-md bg-gray-500 flex justify-around items-center p-4"
         id="balance-section"
       >
         <div>
           <h4 class="font-bold">Balance</h4>
-          <h3 id="balance" class="text-4xl font-medium">$1983</h3>
+          <h3 id="balance" class="text-4xl font-medium">$ 0</h3>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -39,13 +41,14 @@
           />
         </svg>
       </div>
+      <!--income section-->
       <div
         class="col-start-1 col-end-2 row-start-2 row-end-3 bg-teal-500 rounded-md flex justify-around items-center"
         id="income-section"
       >
         <div class="">
           <h4 class="text-lg">Income</h4>
-          <h3 id="income" class="text-2xl">$1983</h3>
+          <h3 id="income" class="text-2xl">$ 0</h3>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,13 +66,15 @@
           />
         </svg>
       </div>
+      <!--expenses section-->
+
       <div
         class="col-start-2 col-end-3 row-start-2 row-end-3 bg-red-500 rounded-md flex justify-around items-center"
         id="expense-section"
       >
         <div class="">
           <h4 class="text-lg">Expenses</h4>
-          <h3 id="expenses" class="text-2xl font-bold">$1983</h3>
+          <h3 id="expenses" class="text-2xl font-bold">$ 0</h3>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -135,8 +140,9 @@
         fill="none"
         viewBox="0 0 24 24"
         stroke-width="1.5"
-        stroke="currentColor"
-        class="w-8 h-8"
+        stroke="black"
+        id="add-icon"
+        class="w-8 h-8 cursor-pointer"
       >
         <path
           stroke-linecap="round"
@@ -160,6 +166,7 @@
         />
       </svg>
     </footer>
+    <!---mMODAL AND OVERLAY-->
     <div
       id="overlay"
       class="hidden absolute h-full w-full top-0 bg-slate-600/60"
@@ -168,13 +175,29 @@
       id="modal"
       class="hidden font-medium z-50 w-3/4 bg-white rounded-md p-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
     >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-8 h-8 absolute right-4 cursor-pointer"
+        id="close-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+
       <form class="flex flex-col gap-3">
-        <h1 class="text-center text-2xl">Add new Purchase</h1>
+        <h1 class="text-center text-xl">Add new Purchase</h1>
         <ul class="border border-gray-200 rounded-xl">
           <li class="border-b">
             <input
               type="text"
-              id="purchaseName"
+              id="purchase-name"
               class="w-full py-3 px-2 rounded-xl"
               placeholder="Name"
               required
@@ -183,7 +206,7 @@
           <li>
             <input
               type="number"
-              id="purchasePrice"
+              id="purchase-price"
               class="w-full py-3 px-2 rounded-xl"
               placeholder="Price"
               required
@@ -192,71 +215,73 @@
         </ul>
         <!-- Comment -->
         <!-- Comment -->
-
         <h3 class="">Category</h3>
-        <ul class="border border-gray-200 rounded-xl">
-          <li class="border-b">
-            <div class="flex items-center pl-3">
-              <input
-                id="categoryFood"
-                type="radio"
-                value=""
-                name="list-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label for="categoryFood" class="w-full py-3 ml-2">Food </label>
-            </div>
-          </li>
-          <li
-            class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600"
-          >
-            <div class="flex items-center pl-3">
-              <input
-                id="categoryMember"
-                type="radio"
-                value=""
-                name="list-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label for="categoryMember" class="w-full py-3 ml-2"
-                >Memberships</label
-              >
-            </div>
-          </li>
-          <li
-            class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600"
-          >
-            <div class="flex items-center pl-3">
-              <input
-                id="categoryTransport"
-                type="radio"
-                value=""
-                name="list-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label for="categoryTransport" class="w-full py-3 ml-2"
-                >Transport</label
-              >
-            </div>
-          </li>
-          <li
-            class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600"
-          >
-            <div class="flex items-center pl-3">
-              <input
-                id="categoryHobby"
-                type="radio"
-                value=""
-                name="list-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label for="categoryHobby" class="w-full py-3 ml-2">Hobby</label>
-            </div>
-          </li>
-        </ul>
+        <form action="" id="radio-form">
+          <ul class="border border-gray-200 rounded-xl">
+            <li class="border-b">
+              <div class="flex items-center pl-3">
+                <input
+                  id="categoryFood"
+                  type="radio"
+                  value=""
+                  name="list-radio"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label for="categoryFood" class="w-full py-3 ml-2">Food </label>
+              </div>
+            </li>
+            <li
+              class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600"
+            >
+              <div class="flex items-center pl-3">
+                <input
+                  id="categoryMember"
+                  type="radio"
+                  value=""
+                  name="list-radio"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label for="categoryMember" class="w-full py-3 ml-2"
+                  >Memberships</label
+                >
+              </div>
+            </li>
+            <li
+              class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600"
+            >
+              <div class="flex items-center pl-3">
+                <input
+                  id="categoryTransport"
+                  type="radio"
+                  value=""
+                  name="list-radio"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label for="categoryTransport" class="w-full py-3 ml-2"
+                  >Transport</label
+                >
+              </div>
+            </li>
+            <li
+              class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600"
+            >
+              <div class="flex items-center pl-3">
+                <input
+                  id="categoryHobby"
+                  type="radio"
+                  value=""
+                  name="list-radio"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label for="categoryHobby" class="w-full py-3 ml-2"
+                  >Hobby</label
+                >
+              </div>
+            </li>
+          </ul>
+        </form>
         <!----->
         <!----->
-
         <input
           type="submit"
           value="Submit"
