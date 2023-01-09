@@ -1,7 +1,15 @@
-let income = 0;
 let myList = [];
 
-const toggleModal = function toggleNewPurchaseModal() {
+let income = 0;
+let expenses = 0;
+
+const calcBalance = function () {
+  const balance = income - expenses;
+  document.getElementById("balance").innerText = balance;
+};
+
+//  function to toggle modal
+const toggleModal = function () {
   document.getElementById("overlay").classList.toggle("hidden");
   document.getElementById("modal").classList.toggle("hidden");
 };
@@ -19,7 +27,6 @@ document
 // select the income box and add click event to type your income
 document.getElementById("income-section").addEventListener("click", () => {
   const incomeDisplay = document.getElementById("income");
-
   //  ask for income again if its not a number
   do {
     // eslint-disable-next-line no-alert
@@ -27,12 +34,29 @@ document.getElementById("income-section").addEventListener("click", () => {
     // eslint-disable-next-line no-restricted-globals
   } while (isNaN(income));
   incomeDisplay.innerText = `$ ${income}`;
-  console.log(income);
 });
 
 // blueprint for new purchase
-const newPurchase = function (name, category, price) {
-  return [name, category, price];
+const newPurchase = function (name, price) {
+  const nameOutput = document.createElement("p");
+  const priceOutput = document.createElement("p");
+  const purchaseList = document.getElementById("purchase-list");
+  const newItemWrapper = document.createElement("li");
+  newItemWrapper.classList.add(
+    "flex",
+    "items-center",
+    "rounded-md",
+    "justify-between",
+    // eslint-disable-next-line comma-dangle
+    "p-2"
+  );
+
+  purchaseList.appendChild(newItemWrapper);
+  newItemWrapper.appendChild(nameOutput);
+  newItemWrapper.appendChild(priceOutput);
+
+  nameOutput.innerText = name;
+  priceOutput.innerText = `$ ${price} `;
 };
 
 document.getElementById("submit").addEventListener("click", (event) => {
@@ -41,17 +65,18 @@ document.getElementById("submit").addEventListener("click", (event) => {
   // select user input
   const purhcaseName = document.getElementById("purchase-name");
   const purchasePrice = document.getElementById("purchase-price");
+  expenses += parseInt(purchasePrice.value, 10);
+  document.getElementById("expenses").innerText = `$ ${expenses}`;
   // add a new purchase
   const addPurchase = newPurchase(
     purhcaseName.value,
-    "coming soon",
     // eslint-disable-next-line comma-dangle
     purchasePrice.value
   );
-  myList.push(addPurchase);
-  console.log(myList);
-  myList = [];
 
+  myList.push(addPurchase);
+  calcBalance();
   // close the modal
   toggleModal();
+  myList = [];
 });
