@@ -34,14 +34,18 @@ document.getElementById("income-section").addEventListener("click", () => {
     // eslint-disable-next-line no-restricted-globals
   } while (isNaN(income));
   incomeDisplay.innerText = `$ ${income}`;
+  calcBalance();
 });
 
 // blueprint for new purchase
 const newPurchase = function (name, price) {
   const nameOutput = document.createElement("p");
   const priceOutput = document.createElement("p");
-  const purchaseList = document.getElementById("purchase-list");
   const newItemWrapper = document.createElement("li");
+  newItemWrapper.addEventListener("click", () => {
+    toggleModal();
+  });
+  const purchaseList = document.getElementById("purchase-list");
   newItemWrapper.classList.add(
     "flex",
     "items-center",
