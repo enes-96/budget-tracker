@@ -13,7 +13,6 @@ const toggleModal = function () {
   document.getElementById("overlay").classList.toggle("hidden");
   document.getElementById("modal").classList.toggle("hidden");
 };
-
 //  select the plus icon in the footer and add click event for modal
 document
   .getElementById("add-icon")
@@ -41,11 +40,9 @@ document.getElementById("income-section").addEventListener("click", () => {
 const newPurchase = function (name, price) {
   const nameOutput = document.createElement("p");
   const priceOutput = document.createElement("p");
-  const newItemWrapper = document.createElement("li");
-  newItemWrapper.addEventListener("click", () => {
-    toggleModal();
-  });
   const purchaseList = document.getElementById("purchase-list");
+  const newItemWrapper = document.createElement("li");
+  newItemWrapper.setAttribute("id", "createdItem");
   newItemWrapper.classList.add(
     "flex",
     "items-center",
@@ -54,13 +51,20 @@ const newPurchase = function (name, price) {
     // eslint-disable-next-line comma-dangle
     "p-2"
   );
-
   purchaseList.appendChild(newItemWrapper);
   newItemWrapper.appendChild(nameOutput);
   newItemWrapper.appendChild(priceOutput);
 
   nameOutput.innerText = name;
   priceOutput.innerText = `$ ${price} `;
+};
+
+const editItems = function () {
+  document.querySelectorAll("#createdItem").forEach((item) => {
+    item.addEventListener("click", () => {
+      item.remove();
+    });
+  });
 };
 
 document.getElementById("submit").addEventListener("click", (event) => {
@@ -83,4 +87,5 @@ document.getElementById("submit").addEventListener("click", (event) => {
   // close the modal
   toggleModal();
   myList = [];
+  editItems();
 });
